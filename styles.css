@@ -1,0 +1,427 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  perspective: 1500px; /* Perspective for a 3D effect */
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  z-index: 102;
+}
+
+.animate {
+  width: auto;
+  text-align: center;
+  position: relative;
+  top: 40%;
+  overflow: hidden;
+  margin: 0;
+}
+
+#loader .animate h1,
+#loader .animate h2 {
+  display: block;
+  position: relative;
+  top: 100%;
+  color: #fff;
+  font-size: 30px;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  margin: 0;
+  text-transform: capitalize;
+  overflow: hidden;
+  letter-spacing: 3px;
+  animation: typewriter 2s steps(40, end) forwards,
+    blink 0.75s step-start infinite;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+h2 span {
+  color: orange;
+}
+.green,
+.blue {
+  position: absolute;
+  width: 0; /* Start with zero width */
+  height: 10vh; /* Keep the height as defined */
+}
+
+.green {
+  background-color: #ec7100; /* Add background color for visibility */
+}
+
+.blue {
+  top: 22vh;
+  left: 100%; /* Start outside the viewport on the right */
+  background-color: blue; /* Add background color for visibility */
+  z-index: 4; /* Slightly behind the green div */
+}
+
+.wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.page {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 100vh; /* Positioned below the viewport initially */
+  transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out,
+    clip-path 1.5s ease-in-out;
+  opacity: 0;
+  clip-path: circle(
+    0% at 50% 100%
+  ); /* Start as a small circle at bottom-center */
+  transform: scale(0.95); /* Slightly scaled down for a dynamic effect */
+  will-change: transform, opacity, clip-path;
+}
+.page.incoming {
+  top: 0;
+  opacity: 1;
+  z-index: 3;
+  clip-path: circle(150% at 50% 50%);
+  transform: scale(1);
+  filter: blur(0px); /* Clear focus */
+}
+
+.page.outgoing {
+  top: 0;
+  opacity: 0;
+  clip-path: circle(0% at 50% 50%);
+  transform: scale(1);
+  filter: blur(8px); /* Blurred out */
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: transform 0.5s ease-in-out;
+}
+
+.text {
+  font-size: 2rem;
+  color: #333;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Smooth and slow text animation */
+}
+.box {
+  position: absolute;
+  width: 60vw;
+  height: 10vh;
+  top: 23%;
+  left: 10%;
+  overflow: hidden;
+}
+.page.incoming .text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#Navbar {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Make navbar fixed */
+  top: 0;
+  left: 0;
+  z-index: 10; /* Ensure it stays on top of other elements */
+  padding: 0 20px;
+}
+
+#Navbar img {
+  width: 100px;
+  height: 50px;
+}
+
+#home {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.container {
+  background-image: url(./images/digital.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#home .headed {
+  position: absolute;
+  width: 100vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 12;
+}
+#home .headed p {
+  font-size: 50px;
+  margin: 0;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  color: #ccc;
+}
+#home .headed span {
+  color: #ec7100;
+}
+.number {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  position: fixed; /* Make the numbers fixed */
+  top: 50%; /* Center vertically */
+  right: 40px;
+  transform: translateY(-50%); /* Center vertically */
+  z-index: 10; /* Ensure it stays on top of other elements */
+}
+.fa-bars {
+  font-size: 24px; /* Adjust the size */
+  color: #333; /* Change the color */
+  cursor: pointer;
+  position: relative;
+  right: 30px;
+}
+#Sidebar {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 30%;
+  height: 100%;
+  background-color: rgba(
+    68,
+    68,
+    68,
+    0.8
+  ); /* Updated to transparent background */
+  color: #fff;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+#Sidebar.open {
+  right: 0;
+}
+
+#Sidebar .close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#Sidebar ul {
+  list-style: none;
+  padding: 50px 20px;
+  margin: 0;
+  padding-left: 40px;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
+
+#Sidebar ul li {
+  margin: 20px 0;
+}
+
+#Sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+#Sidebar ul li a:hover {
+  color: #ec7100;
+}
+.number {
+  width: 30px;
+  height: 200px;
+  position: fixed;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.icon {
+  position: absolute;
+  bottom: 0%;
+  width: 50px;
+  height: 50px;
+  left: 50%;
+  color: wheat;
+}
+.number-indicator {
+  padding: 5px;
+  margin: 2px;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next {
+  position: absolute;
+  bottom: 10px;
+  left: 49%;
+}
+
+.digital {
+  width: 100%;
+  height: 100vh;
+}
+.second {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+p span {
+  color: #1a7dd8;
+}
+.head {
+  top: 35%;
+  position: relative;
+}
+.second p {
+  position: relative;
+  top: 35%;
+  left: 11%;
+  font-size: 36px;
+  color: #ec7100;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+  z-index: 23245;
+}
+.second ul {
+  position: relative;
+  top: 32%;
+  left: 8%;
+  margin-top: 30px;
+  font-size: 25px;
+}
+a {
+  text-decoration: none;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  color: #ccc;
+}
+.heading {
+  position: relative;
+  top: 183px;
+  width: 100vw;
+  height: 75px;
+  overflow: hidden;
+}
+.second .heading p {
+  top: 230px;
+  display: block;
+  position: relative;
+  margin-top: -40px;
+  font-size: 70px;
+  color: #03285a;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  padding: 0;
+  letter-spacing: 3px;
+}
+.second .animate {
+  overflow: hidden;
+  margin: 0;
+}
+.second .heading1 {
+  position: relative;
+  margin-top: -40px;
+  font-size: 70px;
+  color: #03285a;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  padding: 0;
+  letter-spacing: 3px;
+}
+
+.para li {
+  padding: 5px;
+  color: #fff;
+  list-style-type: none;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 500;
+}
+
+.page a {
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  text-decoration: none;
+}
+#page4 li {
+  color: rgb(0, 0, 0);
+}
+
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}

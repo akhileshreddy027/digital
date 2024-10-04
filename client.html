@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Success Story</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden; /* Hide scrollbars */
+        font-family: "Poppins", Arial sans-serif;
+        font-weight: 700;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out; /* Smooth transition for horizontal scroll */
+        overflow: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: auto;
+        scrollbar-color: orange;
+      }
+
+      .story {
+        width: 100vw; /* Full viewport width for each story */
+        height: 100vh; /* Full viewport height for each story */
+        display: flex;
+        align-items: center;
+        position: relative;
+        left: 0;
+        scroll-snap-align: start;
+      }
+
+      .story-content {
+        width: 500px; /* Initial width */
+        height: 600px; /* Initial height */
+        background-color: black;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        top: 100%;
+        z-index: 1; /* Default z-index */
+        margin-left: 20px;
+        margin-top: 100px;
+        margin-right: 30px;
+      }
+
+      .story.expanded .story-content {
+        width: 100vw; /* Full width on expansion */
+        height: 100vh;
+        margin: 0;
+        position: relative; /* Full height on expansion */
+        z-index: 4; /* Higher z-index for expanded state */
+      }
+
+      .client-name {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 2em;
+        color: white;
+        font-weight: bold;
+      }
+
+      .story.expanded .client-name {
+        display: none;
+      }
+
+      .story-content-inner {
+        display: none;
+        padding: 40px;
+        color: white;
+        width: 80%;
+        font-size: 20px;
+      }
+
+      .story.expanded .story-content-inner {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #000;
+        z-index: 102;
+      }
+      .animate {
+        width: auto;
+        text-align: center;
+        position: relative;
+        top: 20%;
+        overflow: hidden;
+        margin: 0;
+      }
+      #loader .animate h1,
+      #loader .animate h2 {
+        display: block;
+        position: relative;
+        top: 100%;
+        color: #fff;
+        font-size: 100px;
+        margin: 0;
+        text-transform: uppercase;
+        overflow: hidden;
+        letter-spacing: 3px;
+      }
+     strong{
+      color: #F6921E;
+     }
+     #Navbar {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Make navbar fixed */
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure it stays on top of other elements */
+    padding: 0 20px;
+}
+
+#Navbar img {
+    width: 50px;
+    height: 50px;
+}
+.fa-bars {
+    font-size: 24px; /* Adjust the size */
+    color: #333; /* Change the color */
+    cursor: pointer;
+    position: relative;
+    right: 30px;
+  }
+  #Sidebar {
+    position: fixed;
+    top: 0;
+    right: -50%; 
+    width: 30%;
+    height: 100%;
+    background-color: #444;
+    color: #fff;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+#Sidebar.open {
+    right: 0;
+}
+a{
+  color: #000;
+  text-decoration: none;
+}
+#Sidebar .close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#Sidebar ul {
+    list-style: none;
+    padding: 50px 20px;
+    margin: 0;
+    text-align: center;
+}
+
+#Sidebar ul li {
+    margin: 20px 0;
+}
+
+#Sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#Sidebar .semi-circle {
+    position: absolute;
+    top: 0;
+    left: -15%; /* Offset the semi-circle to create the effect */
+    width: 30%;
+    height: 100%;
+    background-color: #555;
+    border-radius: 50% 0 0 50%;
+}
+video{
+  position: fixed;
+  width: 100%;
+  height: auto;
+}
+#backButton {
+  position: fixed;
+  top: 20px;                        
+  height: auto;
+  left: 50%;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  z-index: 3;
+  transition: background-color 0.3s ease;
+}
+
+#backButton:hover {
+  background-color: #555;
+}
+    </style>
+  </head>
+  <body>
+    <video src="./pics/client.mp4" autoplay loop></video>
+    <div id="loader">
+      <div class="animate">
+        <h1>About</h1>
+      </div>
+      <div class="animate">
+        <h2>BrandPull</h2>
+      </div>
+      <div class="animate">
+        <h2>clients success storys</h2>
+      </div>
+    </div>
+    <div class="container">
+      <button id="backButton">← Back</button>
+
+    <div class="blue"></div>
+      <div id="story1" class="story">
+        <div
+          class="story-content"
+          id="story-content1"
+          style="background-image: url('./pics/story1.webp')"
+        >
+          <div class="story-content-inner">
+            <h2><strong>Client's company:</strong> Conquest Fitness Center</h2>
+            <p><strong>Client Name:</strong> Bhanujirao</p>
+            <p><strong>Fitness Center:</strong> Conquest Fitness</p>
+            <p><strong>Branches:</strong> Kukatpally and Kondapur, Hyderabad</p>
+            <p>
+              <strong>Services Provided:</strong> Social Media Marketing,
+              Graphic Design, Videography
+            </p>
+            <p><strong>Duration:</strong> 6+ Months</p>
+            <p>
+              At BrandPull Services Private Limited, we partnered with
+              Bhanujirao's Conquest Fitness to boost membership sales and
+              personal training enrollments at their Kukatpally and Kondapur
+              branches. Through a strategic combination of social media
+              marketing, eye-catching graphic designs, and engaging videography,
+              we successfully drove footfall and conversions.
+            </p>
+          </div>
+          <div class="client-name">Conquest Fitness Center</div>
+        </div>
+      </div>
+      <div id="story2" class="story">
+        <div
+          class="story-content"
+          id="story-content2"
+          style="background-image: url('story2-image.jpg')"
+        >
+          <div class="story-content-inner">
+            <h2>Client: OOTBox by Digiprinfinity Pvt Ltd</h2>
+            <p><strong>Client:</strong> OOTBox (Digiprinfinity Pvt Ltd)</p>
+            <p><strong>Industry:</strong> Personalized Gifting</p>
+            <p>
+              <strong>Services Provided:</strong> E-commerce Website
+              Development, Social Media Marketing, SEO, Branding
+            </p>
+            <p><strong>Objective:</strong> Franchise Sales and Brand Growth</p>
+            <p>
+              BrandPull Services Private Limited partnered with OOTBox, a
+              leading personalized gifting brand under Digiprinfinity Pvt Ltd,
+              to expand their franchise network and boost their online presence.
+              Our comprehensive approach included developing a robust e-commerce
+              website, executing targeted social media marketing (SMM)
+              campaigns, optimizing their online visibility through SEO, and
+              enhancing their overall brand identity.
+            </p>
+            <p>
+              Through our strategic efforts, OOTBox successfully sold multiple
+              franchise stores, significantly increasing their footprint across
+              regions. The e-commerce platform we built enabled seamless
+              customer interactions, driving online sales, while our SMM and SEO
+              strategies attracted a wider audience and strengthened their
+              brand.
+            </p>
+            <p>
+              We're proud to have contributed to OOTBox's success, helping them
+              grow both offline and online, and establishing them as a leader in
+              the personalized gifting industry.
+            </p>
+          </div>
+          <div class="client-name">OOTBox by Digiprinfinity Pvt Ltd</div>
+        </div>
+      </div>
+      <div id="story3" class="story">
+        <div
+          class="story-content"
+          id="story-content3"
+          style="background-image: url('./pics/story3.jpg')"
+        >
+          <div class="story-content-inner">
+            <h2>Client: Genius Baby</h2>
+            <p><strong>Client:</strong> Genius Baby</p>
+            <p><strong>Industry:</strong> Pregnant Audio Devices</p>
+            <p>
+              <strong>Services Provided:</strong> Social Media Marketing, SEO,
+              Website Development, Google and Meta Ads, Product Photo and Video
+              Shoots
+            </p>
+            <p><strong>Start Date:</strong> August 2024</p>
+            <p>
+              BrandPull Services Private Limited is proud to partner with Genius
+              Baby, India's first-ever pregnant audio device brand, to provide
+              complete end-to-end digital marketing and branding services. Since
+              August 2024, we've been working closely with Genius Baby to launch
+              and establish their innovative product in the market.
+            </p>
+            <p>
+              Our collaboration includes everything from creating a
+              user-friendly website to managing targeted Google and Meta ad
+              campaigns, optimizing their online presence with SEO, and
+              executing engaging social media marketing strategies. We've also
+              conducted high-quality product photo and video shoots to showcase
+              the unique features of Genius Baby’s offerings.
+            </p>
+            
+          </div>
+          <div class="client-name">Genius Baby</div>
+        </div>
+      </div>
+    </div>
+    <script src="animation.js"></script>
+    <script>
+      let scrollTimeout;
+      const container = document.querySelector(".container");
+      let currentIndex = 0;
+
+      // Handle vertical scrolling to translate to horizontal scroll
+      document.addEventListener("wheel", function (event) {
+        if (event.deltaY !== 0) {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (event.deltaY > 0) {
+              // Scroll down: go to next story
+              if (currentIndex < 2) {
+                currentIndex++;
+                container.scrollTo({
+                  left: currentIndex * window.innerWidth,
+                  behavior: "smooth",
+                });
+              }
+            } else {
+              // Scroll up: go to previous story
+              if (currentIndex > 0) {
+                currentIndex--;
+                container.scrollTo({
+                  left: currentIndex * window.innerWidth,
+                  behavior: "smooth",
+                });
+              }
+            }
+          }, 100); // Debounce scrolling
+          event.preventDefault(); // Prevent default vertical scroll
+        }
+      });
+
+      // Toggle expanded state
+      document.querySelectorAll(".story-content").forEach((storyContent) => {
+        storyContent.addEventListener("click", function () {
+          const story = this.parentElement;
+          const isExpanded = story.classList.contains("expanded");
+          document
+            .querySelectorAll(".story")
+            .forEach((s) => s.classList.remove("expanded"));
+          if (!isExpanded) {
+            story.classList.add("expanded");
+          }
+        });
+      });
+
+      // Optionally, close expanded story when clicking outside
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".story-content")) {
+          document
+            .querySelectorAll(".story")
+            .forEach((s) => s.classList.remove("expanded"));
+        }
+      });
+    </script>
+  </body>
+</html>

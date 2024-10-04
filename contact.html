@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contact-form-container {
+    width: 800px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #ff6600;
+}
+#contactForm{
+    width: 500px;
+}
+form {
+    margin-top: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    background-color: #ff6600;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e55b00;
+}
+
+.contact-details h3 {
+    margin: 20px 0 5px;
+}
+
+.contact-details p {
+    margin: 0 0 15px;
+}
+.box{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.contact-details{
+    margin: 50px;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <div class="contact-form-container">
+        <h2>Enquire</h2>
+        <p>Let's create something incredible together, Let's talk!</p>
+        <div class="box">
+            <form id="contactForm">
+                <div>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div>
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div>
+                    <label for="requirement">Brief Requirement</label>
+                    <textarea id="requirement" name="requirement"></textarea>
+                </div>
+              
+                <button type="submit">Submit</button>
+            </form>
+            <div class="contact-details">
+                <h3>Call Us</h3>
+                <p>+91-7090700066</p>
+                <h3>Email Us</h3>
+                <p><a href="mailto:brandpullservices@gmail.com">brandpullservices@gmail.com</a></p>
+                <h3>Office Address</h3>
+                <p>Plot No. 62, 2nd Floor, Arunodaya Colony, Madhapur, Hyderabad - 500081</p>
+            </div>
+        </div>
+    </div>
+    <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <!-- Initialize EmailJS -->
+    <script type="text/javascript">
+        emailjs.init("service_wf94rwo");
+    </script>
+
+    <!-- Form submission handling -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const requirement = document.getElementById('requirement').value;
+
+            emailjs.send('service_wf94rwo', 'template_293pwk4', {
+                full_name: fullName,
+                email_address: email,
+                phone_number: phone,
+                brief_requirement: requirement,
+            }).then(function(response) {
+                alert('Message sent successfully!');
+            }, function(error) {
+                alert('Failed to send message. Please try again later.');
+            });
+
+            // Reset the form after submission
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

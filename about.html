@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - BrandPull Services Pvt Ltd</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        font-family: "Poppins", Arial sans-serif;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 12;
+      }
+      ul,
+      li {
+        color: #fff;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-top: 40px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        color: #f6921e;
+      }
+
+      p {
+        margin-bottom: 20px;
+        font-size: 1rem;
+        color: #fff;
+      }
+
+      ul {
+        list-style-type: disc;
+        margin-left: 20px;
+        color: #f6921e;
+      }
+
+      li {
+        margin-bottom: 10px;
+        color: #fff;
+      }
+
+      .faqs {
+        margin-top: 40px;
+      }
+
+      .faqs h3 {
+        margin-top: 30px;
+        color: #f6921e;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+      }
+
+      .faq-item strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .commitment {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 20px;
+        margin-top: 40px;
+        border-radius: 5px;
+      }
+
+      .commitment p {
+        margin: 0;
+      }
+      .about {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+      }
+      .about img {
+        width: 300px;
+        height: 200px;
+      }
+      .about .content {
+        width: 700px;
+      }
+
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #000;
+        z-index: 102;
+      }
+      .animate {
+        width: auto;
+        text-align: center;
+        position: relative;
+        top: 20%;
+        overflow: hidden;
+        margin: 0;
+      }
+      #loader .animate h1,
+      #loader .animate h2 {
+        display: block;
+        position: relative;
+        top: 100%;
+        color: #fff;
+        font-size: 100px;
+        margin: 0;
+        text-transform: uppercase;
+        overflow: hidden;
+        letter-spacing: 3px;
+      }
+      button {
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 0;
+      }
+      #Navbar {
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed; /* Make navbar fixed */
+        top: 0;
+        left: 0;
+        z-index: 10; /* Ensure it stays on top of other elements */
+        padding: 0 20px;
+      }
+
+      #Navbar img {
+        width: 50px;
+        height: 50px;
+      }
+      .fa-bars {
+        font-size: 24px; /* Adjust the size */
+        color: #333; /* Change the color */
+        cursor: pointer;
+        position: relative;
+        right: 30px;
+      }
+      #Sidebar {
+        position: fixed;
+        top: 0;
+        right: -50%;
+        width: 30%;
+        height: 100%;
+        background-color: #444;
+        color: #fff;
+        transition: right 0.3s ease;
+        z-index: 1000;
+      }
+
+      #Sidebar.open {
+        right: 0;
+      }
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      #Sidebar .close-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      #Sidebar ul {
+        list-style: none;
+        padding: 50px 20px;
+        margin: 0;
+        text-align: center;
+      }
+
+      #Sidebar ul li {
+        margin: 20px 0;
+      }
+
+      #Sidebar ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+      }
+
+      #Sidebar .semi-circle {
+        position: absolute;
+        top: 0;
+        left: -15%; /* Offset the semi-circle to create the effect */
+        width: 30%;
+        height: 100%;
+        background-color: #555;
+        border-radius: 50% 0 0 50%;
+      }
+      .about h2 {
+        color: #f6921e;
+      }
+      .about p {
+        color: #fff;
+      }
+      video {
+        position: fixed;
+        width: 100%;
+        height: auto;
+      }
+      #backButton {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        border-radius: 5px;
+        z-index: 1;
+      }
+
+      #backButton:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <video src="./pics/about.mp4" autoplay loop></video>
+    <div id="loader">
+      <div class="animate">
+        <h1>About</h1>
+      </div>
+      <div class="animate">
+        <h2>BrandPull</h2>
+      </div>
+      <div class="animate">
+        <h2>services</h2>
+      </div>
+    </div>
+    <div class="container">
+      <button id="backButton">← Back</button>
+
+      <div id="Sidebar">
+        <div class="semi-circle"></div>
+        <i class="fas fa-times close-btn" onclick="closeSidebar()"></i>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/client.html">client storys</a></li>
+          <li><a href="/contact.html">contact</a></li>
+        </ul>
+      </div>
+      <section class="about" id="about">
+        <div class="img">
+          <img src="./images/logo.png" alt="" />
+        </div>
+        <div class="content">
+          <h2>About BrandPull Services Pvt Ltd</h2>
+          <p>
+            BrandPull Services Pvt Ltd started as a freelancing venture in 2021,
+            founded by DurgaPrasad K, with a vision to transform businesses
+            through comprehensive digital solutions. Our journey began with a
+            landmark achievement, serving OOTBox, where we successfully sold 8
+            franchises in just one year. We provided OOTBox with a full suite of
+            services, including social media marketing (SMM), search engine
+            optimization (SEO), lead generation, and deal closures.
+          </p>
+          <p>
+            After serving 10+ clients as a freelancer, BrandPull Services Pvt
+            Ltd was officially registered as a company in 2024. Today, we are a
+            thriving team located at Plot No. 62, 2nd Floor, Arunodaya Colony,
+            Madhapur, Hyderabad - 500081, with virtual offices in Mumbai and
+            Bangalore. Under the leadership of CEO and Creative Head DurgaPrasad
+            K and Director Mr. Rajesh Pattani, our team of SEO specialists,
+            social media marketers, designers, and developers work
+            collaboratively to deliver exceptional results.
+          </p>
+          <p>
+            BrandPull Services is proudly recognized by StartUp India,
+            reflecting our commitment to fostering innovation and supporting
+            business growth nationwide and internationally. Our mission is to be
+            the ultimate partner for startups, offering IT and non-IT services
+            that drive success and expansion.
+          </p>
+        </div>
+      </section>
+
+      <section class="about" id="vision">
+        <div class="content">
+          <h2>Vision</h2>
+          <p>
+            <strong>Our Vision:</strong> To be the leading one-stop solution
+            provider for startups, brands, and businesses, empowering them to
+            achieve unprecedented growth through innovative and tailored digital
+            marketing, branding, and IT services. We aspire to serve not just
+            across India but also cater to global clients, establishing
+            BrandPull as a trusted partner in their journey to success.
+          </p>
+        </div>
+        <div class="img">
+          <img src="./images/logo.png" alt="" />
+        </div>
+      </section>
+
+      <section class="about" id="mission">
+        <div class="content">
+          <h2>Mission</h2>
+          <p><strong>Our Mission:</strong></p>
+          <ul>
+            <li>
+              To deliver end-to-end digital marketing and IT solutions that
+              cater to the unique needs of startups and established brands.
+            </li>
+            <li>
+              To foster long-term partnerships by offering high-quality,
+              creative, and results-driven services that ensure our clients'
+              continuous growth.
+            </li>
+            <li>
+              To innovate continuously and expand our service offerings to meet
+              the evolving demands of the digital landscape.
+            </li>
+          </ul>
+        </div>
+        <div class="img">
+          <img src="./images/logo.png" alt="" />
+        </div>
+      </section>
+      <section class="faqs" id="faqs">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <h3>1. What services does BrandPull offer?</h3>
+          <p>
+            BrandPull offers a wide range of services, including digital
+            marketing (SEO, SMM, PPC, etc.), website and app design &
+            development, graphic designing, branding, CA & accounting services,
+            product photography, and ad shoots with influencers.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>2. Is BrandPull only for startups?</h3>
+          <p>
+            No, while we specialize in serving startups, our services are also
+            designed to support established businesses and brands across various
+            industries.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>3. Do you offer customized packages?</h3>
+          <p>
+            Yes, we offer tailor-made packages for real estate, franchise
+            businesses, and startups to meet their specific needs and goals.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>4. Where is BrandPull located?</h3>
+          <p>
+            Our main office is located at Plot No. 62, 2nd Floor, Arunodaya
+            Colony, Madhapur, Hyderabad. We also have virtual offices in Mumbai
+            and Bangalore.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>5. How do I get started with BrandPull?</h3>
+          <p>
+            Simply contact us through our website or visit our office. Our team
+            will guide you through the process and create a plan tailored to
+            your business needs.
+          </p>
+        </div>
+      </section>
+
+      <section class="commitment">
+        <h2>Our Commitment</h2>
+        <p>
+          BrandPull Services Pvt Ltd is your end-to-end service provider. Once
+          you enroll with us, you won’t need to look for any other agency. We
+          have everything in-house, from digital marketing and branding to
+          website development and IT solutions, ensuring your brand or business
+          receives the comprehensive support it needs to thrive.
+        </p>
+      </section>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  width: 100%;
+  height: 100vh;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  z-index: 102;
+}
+.animate {
+  width: auto;
+  text-align: center;
+  position: relative;
+  top: 20%;
+  overflow: hidden;
+  margin: 0;
+}
+#loader .animate h1,
+#loader .animate h2 {
+  display: block;
+  position: relative;
+  top: 100%;
+  color: #fff;
+  font-size: 100px;
+  margin: 0;
+  text-transform: uppercase;
+  overflow: hidden;
+  letter-spacing: 3px;
+}
+#backButton {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+#backButton:hover {
+  background-color: #555;
+}
+
+h2 span {
+  color: orange;
+}
+.green,
+.blue {
+  position: absolute;
+  width: 100%;
+  height: 0;
+}
+
+.green {
+  background-color: green;
+  bottom: 0vh; /* Start off-screen */
+  z-index: 5;
+}
+
+.blue {
+  background-color: blue;
+  bottom: 0vh; /* Start off-screen */
+  z-index: 4;
+}
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background-color: #3498db; /* Overlay color */
+  z-index: 10;
+}
+
+.overlay-top {
+  top: 0;
+}
+
+.overlay-bottom {
+  bottom: 0;
+}
+
+.page-content {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  background-color: #fff;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+.container {
+  width: 100vw;
+  height: 110vh;
+  overflow: scroll;
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 150px;
+}
+video {
+  width: 150vw;
+  height: 120vh;
+}
+.head {
+  margin-top: 0px;
+  width: 800px;
+}
+.head h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 40px;
+  color: orange;
+  font-size: 24px;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  background-color: #000;
+}
+.container h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 40px;
+  color: orange;
+  font-size: 24px;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+}
+.head p {
+  font-size: 25px;
+  color: #fff;
+}
+.ser h1 {
+  width: 300px;
+  background-color: #000;
+  text-align: center;
+  color: orange;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* Optional: Limit the maximum width of the grid */
+}
+.head .heading {
+  display: block;
+  position: relative;
+  margin-top: -20px;
+  font-size: 70px;
+  color: #fff;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  padding: 0;
+  letter-spacing: 3px;
+}
+.head .heading1 {
+  position: relative;
+  margin-top: -90px;
+  font-size: 70px;
+  color: #fff;
+  font-family: "Poppins", Arial sans-serif;
+  font-weight: 700;
+  padding: 0;
+  letter-spacing: 3px;
+  margin-bottom: -30px;
+}
+
+.card {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 350px;
+  height: 300px;
+  transition: transform 0.6s, width 0.6s, height 0.6s; /* Add transition for size change */
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+  width: 500px; /* Expand width on hover */
+  height: 500px; /* Expand height on hover */
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden; /* Ensure image does not overflow the card */
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  transform: rotateY(180deg);
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card-back h2 {
+  color: orange;
+  font-size: 30px;
+}
+.card-back p {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.card-back p {
+  width: 400px;
+}
+.choose {
+  width: 60%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+.choose img {
+  width: 400px;
+  height: 500px;
+}
+.choose h1 {
+  font-size: 50px;
+  color: black;
+}
+strong {
+  color: orange;
+}
+.choose{
+  width: 100%;
+  height: 100vh;
+}
+.choose p {
+  font-size: 30px;
+  color: #fff;
+  margin: 15px;
+}
