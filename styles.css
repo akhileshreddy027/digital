@@ -2,6 +2,7 @@ body {
   margin: 0;
   overflow: hidden;
   perspective: 1500px; /* Perspective for a 3D effect */
+   background-color: #000;
 }
 
 #loader {
